@@ -1,0 +1,35 @@
+{
+  "name": "studiow/laravel-filtering",
+  "type": "library",
+  "description": "Provides a unified filter interface for Collections, Database and Eloquent Queries",
+  "authors": [
+    {
+      "name": "Willem Wollebrants",
+      "email": "willem@studiow.be",
+      "homepage": "http://studiow.be",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Studiow\\Laravel\\Filtering\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Studiow\\Laravel\\Filtering\\Test\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "cs": "php-cs-fixer fix"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.0",
+    "orchestra/testbench": "^3.8"
+  },
+  "require": {
+    "illuminate/support": "^5.8",
+    "illuminate/database": "^5.8"
+  }
+}
