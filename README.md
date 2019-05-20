@@ -117,18 +117,6 @@ $productsEndingInR->all();
         ['product' => 'Door', 'price' => 100],
     ]
 */
-
-$cheapOrBookcase = $filter
-    ->where('price', '<', 15O)
-    ->orWhere('product', 'Bookcase')->items();
-$cheapOrBookcase->all();
-
-/*
-    [
-        ['product' => 'Chair', 'price' => 100],
-        ['product' => 'Bookcase', 'price' => 150],
-    ]
-*/ 
 ```
 
 ## Results
