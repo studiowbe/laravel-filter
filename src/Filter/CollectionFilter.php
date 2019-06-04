@@ -68,9 +68,9 @@ class CollectionFilter implements Filter
             case 'IS NOT NULL':
                 return $target->reject($this->operatorForIsNull($key));
             case 'ILIKE':
-                return $target->filter($this->operatorForLike($key, $value));
+                return $target->filter($this->operatorForILike($key, $value));
             case 'NOT ILIKE':
-                return $target->reject($this->operatorForLike($key, $value));
+                return $target->reject($this->operatorForILike($key, $value));
         }
 
         throw UnknownOperatorException::forOperator($operator);
