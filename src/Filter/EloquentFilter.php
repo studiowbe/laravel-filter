@@ -59,6 +59,14 @@ class EloquentFilter implements Filter
                 return $this->target->whereNull($key, $boolean);
             case 'IS NOT NULL':
                 return $this->target->whereNotNull($key, $boolean);
+            case 'ILIKE':
+                $find = '%'.strtolower($value).'%';
+
+                return $this->target->whereRaw("LOWER(`{$key}`) LIKE ?", [$find]);
+            case 'NOT ILIKE':
+                $find = '%'.strtolower($value).'%';
+
+                return $this->target->whereRaw("LOWER(`{$key}`) NOT LIKE ?", [$find]);
         }
 
         throw UnknownOperatorException::forOperator($operator);

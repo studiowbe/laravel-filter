@@ -47,4 +47,11 @@ class EloquentFilterTest extends TestCase
 
         $this->assertEquals(['red', 'blue'], $filter->query()->getBindings());
     }
+
+    public function testCaseInsensitiveLike()
+    {
+        $filter = new EloquentFilter($this->getBuilder());
+        $filter->where('color', 'ILIKE', 're');
+        var_dump($filter->query()->toSql());
+    }
 }

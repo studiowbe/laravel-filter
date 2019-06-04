@@ -67,6 +67,10 @@ class CollectionFilter implements Filter
                 return $target->filter($this->operatorForIsNull($key));
             case 'IS NOT NULL':
                 return $target->reject($this->operatorForIsNull($key));
+            case 'ILIKE':
+                return $target->filter($this->operatorForLike($key, $value));
+            case 'NOT ILIKE':
+                return $target->reject($this->operatorForLike($key, $value));
         }
 
         throw UnknownOperatorException::forOperator($operator);
@@ -78,6 +82,15 @@ class CollectionFilter implements Filter
 
         return function ($item) use ($key, $pattern) {
             return fnmatch($pattern, data_get($item, $key));
+        };
+    }
+
+    private function operatorForILike($key, $value)
+    {
+        $pattern = str_replace('%', '*', $value);
+
+        return function ($item) use ($key, $pattern) {
+            return fnmatch($pattern, data_get($item, $key), FNM_CASEFOLD);
         };
     }
 
