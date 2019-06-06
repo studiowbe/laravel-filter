@@ -62,11 +62,11 @@ class QueryFilter implements Filter
             case 'ILIKE':
                 $find = '%'.strtolower($value).'%';
 
-                return $this->target->whereRaw("LOWER(`{$key}`) LIKE ?", [$find]);
+                return $this->target->whereRaw("LOWER(`{$key}`) LIKE ?", [$find], $boolean);
             case 'NOT ILIKE':
                 $find = '%'.strtolower($value).'%';
 
-                return $this->target->whereRaw("LOWER(`{$key}`) NOT LIKE ?", [$find]);
+                return $this->target->whereRaw("LOWER(`{$key}`) NOT LIKE ?", [$find], $boolean);
         }
 
         throw UnknownOperatorException::forOperator($operator);
